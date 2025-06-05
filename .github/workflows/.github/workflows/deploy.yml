@@ -3,7 +3,7 @@ name: Deploy Static HTML to GitHub Pages
 on:
   push:
     branches:
-      - main  # Ganti dengan "master" jika Anda pakai branch master
+      - main  # or "master" if that's your default branch
 
 permissions:
   contents: read
@@ -14,18 +14,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Files
+      - name: Upload Static Files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./Frontend  # <--- sesuaikan folder tempat index.html berada
+          path: ./Frontend  # adjust this if your index.html is elsewhere
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
